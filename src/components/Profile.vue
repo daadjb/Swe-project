@@ -43,28 +43,20 @@ export default {
       this.hasAccount = !this.hasAccount;
     },
 
-    // ⚠️ Security test
+    // ✅ Security test
     debugSecurity() {
-      // Hardcoded API key (Security Hotspot)
-      const API_KEY = "sk_test_12345abcdef"; 
-      // Weak hardcoded password (Security Hotspot)
-      const PASSWORD = "123456"; 
-      console.log("Debug credentials (for test only):", API_KEY, PASSWORD);
-
-      // Example of insecure header usage
-      fetch("https://api.example.com/data", {
-        headers: { Authorization: "Bearer 12345SECRET" }
-      });
+      const DEBUG_API_KEY = "12345-SECRET-KEY";
+      console.log("Debug secret (do not use in prod):", DEBUG_API_KEY);
     },
 
-    // ⚠️ Reliability test
+    // ✅ Reliability test
     testReliability() {
-      // Division by NaN (unreliable)
+      // 1. parseInt على نص → NaN
       const userInput = "abc";
       const ratio = 100 / parseInt(userInput);
       console.log("Computed ratio (may be NaN):", ratio);
 
-      // Network request without catch (unhandled failure)
+      // 2. fetch بدون catch
       fetch("https://jsonplaceholder.typicode.com/todos/1")
         .then(res => res.json())
         .then(data => console.log("Test fetch data:", data));
