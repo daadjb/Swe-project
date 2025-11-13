@@ -1,4 +1,4 @@
-name: Flutter Tests
+name: Node.js Tests
 
 on: [push, pull_request]
 
@@ -7,18 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: src   # <-- شغّل الأوامر في مجلد src
+        working-directory: src   # <- إذا الكود موجود في src/
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          flutter-version: '3.22.0'
+          node-version: '18'
 
       - name: Install dependencies
-        run: flutter pub get
+        run: npm install
 
       - name: Run tests
-        run: flutter test
+        run: npm test
