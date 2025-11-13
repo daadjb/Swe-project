@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: src   
+        working-directory: src   # <-- شغّل الأوامر في مجلد src
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
