@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage --reporter=html"
   },
   "dependencies": {
     "vue": "^3.3.4",
@@ -13,6 +14,9 @@
   },
   "devDependencies": {
     "vite": "^4.3.9",
-    "@vitejs/plugin-vue": "^4.2.3"
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vitest": "^1.4.2",
+    "@testing-library/vue": "^1.2.3",
+    "@testing-library/jest-dom": "^6.0.0"
   }
 }
