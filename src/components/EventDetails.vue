@@ -17,7 +17,6 @@
       </div>
     </div>
 
-    <!-- Booking Modal -->
     <div v-if="showBookingModal" class="modal-overlay">
       <div class="modal">
         <h3>Book Your Tickets</h3>
@@ -35,7 +34,6 @@
       </div>
     </div>
 
-    <!-- Popup -->
     <div v-if="popupMessage" class="popup">
       {{ popupMessage }}
     </div>
@@ -60,37 +58,43 @@ export default {
     };
   },
   mounted() {
-    // تحقق من تسجيل الدخول عند الدخول للصفحة
-    const isLoggedIn = localStorage.getItem("loggedIn");
-    if (!isLoggedIn) {
-      this.showPopup("You must be logged in to view event details!");
-      setTimeout(() => {
-        this.$router.push("/login"); // تحويل لصفحة تسجيل الدخول بعد 2 ثانية
-      }, 2000);
-    }
+    this.checkLoginOnEnter();
   },
   methods: {
-    // تحقق من تسجيل الدخول قبل الحجز
+    checkLoginOnEnter() {
+      const isLoggedIn = localStorage.getItem("loggedIn");
+      if (!isLoggedIn) {
+        this.showPopup("You must be logged in to view event details!");
+        setTimeout(() => {
+          this.$router.push({ name: "Login" }); // تأكدي اسم الراوت في router/index.js
+        }, 2000);
+      }
+    },
+
     checkLoginBeforeBooking() {
       const isLoggedIn = localStorage.getItem("loggedIn");
       if (!isLoggedIn) {
         this.showPopup("Please log in to book a ticket 🧾");
+        setTimeout(() => {
+          this.$router.push({ name: "Login" });
+        }, 2000);
       } else {
         this.showBookingModal = true;
       }
     },
 
-    // تحقق من تسجيل الدخول قبل الإضافة للمفضلات
     checkLoginBeforeFavorite() {
       const isLoggedIn = localStorage.getItem("loggedIn");
       if (!isLoggedIn) {
         this.showPopup("Please log in to add favorites ❤️");
+        setTimeout(() => {
+          this.$router.push({ name: "Login" });
+        }, 2000);
       } else {
         this.addToFavorites();
       }
     },
 
-    // عرض popup مؤقت
     showPopup(message) {
       this.popupMessage = message;
       setTimeout(() => {
@@ -107,6 +111,9 @@ export default {
       const isLoggedIn = localStorage.getItem("loggedIn");
       if (!isLoggedIn) {
         this.showPopup("Please log in to confirm booking!");
+        setTimeout(() => {
+          this.$router.push({ name: "Login" });
+        }, 2000);
         return;
       }
 
@@ -156,7 +163,6 @@ export default {
 </script>
 
 <style scoped>
-/* باقي التنسيقات كما هي */
 .event-details-page {
   max-width: 800px;
   margin: 0 auto;
