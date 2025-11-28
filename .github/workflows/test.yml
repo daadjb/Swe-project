@@ -1,4 +1,4 @@
-name: Node.js Tests
+name: Node.js CI/CD Tests
 
 on:
   push:
@@ -9,24 +9,40 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node.js (Version 20)
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run Vitest with coverage
-        run: npm run test:coverage
+      # =======================================================
+      # 🛡️ الاختبارات غير الوظيفية - فحص الضعف الأمني (Non-functional Test)
+      # =======================================================
+      - name: Run Security Audit for dependencies
+        run: npm audit --audit-level=moderate 
+        # هذا الأمر سيفشل الـ Action إذا وجدت نقاط ضعف متوسطة أو أعلى، مما يضمن مستوى أمان معين.
 
+      # =======================================================
+      # 🧪 الاختبارات الوظيفية - تشغيل Vitest (Functional Tests)
+      # =======================================================
+      - name: Run Vitest with coverage and XML report
+        run: npm run test:coverage
+        # هذا الأمر يشغل الاختبارات الوظيفية ويولد تقرير التغطية المطلوب.
+
+      # =======================================================
+      # 📄 توليد تقرير الاختبار (Report Generation)
+      # =======================================================
+      # رفع تقرير تغطية الكود (Non-functional report) كـ Artifact
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: vitest-coverage-report
           path: coverage/
+          # تأكد أن 'coverage/' هو المسار الصحيح لملفات تقارير Vitest لديك
