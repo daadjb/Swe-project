@@ -6,8 +6,7 @@
   "build": "vite build",
   "preview": "vite preview",
   "test": "vitest run",
-"test:coverage": "vitest run --coverage --reporter=html --allow-breaking-thresholds" },
- "dependencies": {
+"test:coverage": "vitest run --coverage.enabled --reporter=html" "dependencies": {
   "vue": "3.3.4",
   "vue-router": "4.2.2"
  },
