@@ -1,26 +1,28 @@
 {
- "name": "Swe-project",
- "version": "1.0.0",
- "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "test": "vitest run",
-"test:coverage": "vitest run --coverage.enabled --reporter=html" "dependencies": {
-  "vue": "3.3.4",
-  "vue-router": "4.2.2"
- },
- "devDependencies": {
-  "@testing-library/jest-dom": "6.0.0",
-  "@testing-library/vue": "8.1.0",
-  "@vitejs/plugin-vue": "^4.6.2",
-  "@vitest/coverage-v8": "^4.0.14",
-  "@vitest/ui": "^4.0.14",
-  "c8": "^10.1.3",
-  "jsdom": "^27.2.0",
-  "shebang-command": "^2.0.0",
-  "shebang-regex": "^4.0.0",
-  "vite": "^4.5.14",
-  "vitest": "^4.0.14"
- }
+  "name": "Swe-project",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage.enabled --reporter=html"
+  },
+  "dependencies": {
+    "vue": "3.3.4",
+    "vue-router": "4.2.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.0.0",
+    "@testing-library/vue": "8.1.0",
+    "@vitejs/plugin-vue": "^4.6.2",
+    "@vitest/coverage-v8": "^4.0.14",
+    "@vitest/ui": "^4.0.14",
+    "c8": "^10.1.3",
+    "jsdom": "^27.2.0",
+    "shebang-command": "^2.0.0",
+    "shebang-regex": "^4.0.0",
+    "vite": "^4.5.14",
+    "vitest": "^4.0.14"
+  }
 }
