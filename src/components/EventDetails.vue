@@ -57,22 +57,11 @@ export default {
       popupMessage: "",
     };
   },
-  mounted() {
-    this.checkLoginOnEnter();
-  },
-  methods: {
-    checkLoginOnEnter() {
-      const isLoggedIn = localStorage.getItem("loggedIn");
-      if (!isLoggedIn) {
-        this.showPopup("You must be logged in to view event details!");
-        setTimeout(() => {
-          this.$router.push({ name: "Login" }); // تأكدي اسم الراوت في router/index.js
-        }, 2000);
-      }
-    },
 
+  methods: {
+    // منع الحجز إذا مو مسجل دخول
     checkLoginBeforeBooking() {
-      const isLoggedIn = localStorage.getItem("loggedIn");
+      const isLoggedIn = localStorage.getItem("loggedIn") === "true";
       if (!isLoggedIn) {
         this.showPopup("Please log in to book a ticket 🧾");
         setTimeout(() => {
@@ -83,8 +72,9 @@ export default {
       }
     },
 
+    // منع الـ Favorite إذا مو مسجل دخول
     checkLoginBeforeFavorite() {
-      const isLoggedIn = localStorage.getItem("loggedIn");
+      const isLoggedIn = localStorage.getItem("loggedIn") === "true";
       if (!isLoggedIn) {
         this.showPopup("Please log in to add favorites ❤️");
         setTimeout(() => {
@@ -107,8 +97,9 @@ export default {
       this.ticketCount = 1;
     },
 
+    // تأكيد الحجز (والتحقّق مرّة ثانية)
     confirmBooking() {
-      const isLoggedIn = localStorage.getItem("loggedIn");
+      const isLoggedIn = localStorage.getItem("loggedIn") === "true";
       if (!isLoggedIn) {
         this.showPopup("Please log in to confirm booking!");
         setTimeout(() => {
@@ -163,6 +154,7 @@ export default {
 </script>
 
 <style scoped>
+/* كل الـ CSS نفسسسه بدون تغيير */
 .event-details-page {
   max-width: 800px;
   margin: 0 auto;
