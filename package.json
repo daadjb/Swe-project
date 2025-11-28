@@ -6,7 +6,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage.enabled --reporter=html"
+"test:coverage": "vitest run --coverage.enabled --reporter=json"
   },
   "dependencies": {
     "vue": "3.3.4",
