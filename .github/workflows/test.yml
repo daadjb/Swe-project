@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    # هنا يجب أن تكون هناك مسافة سطر
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,24 +22,16 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # =======================================================
-      # 🛡️ الاختبارات غير الوظيفية - فحص الضعف الأمني (Non-functional Test)
-      # =======================================================
-      - name: Run Security Audit for dependencies
-        run: npm audit --audit-level=high # تم تصحيح المسافات هنا أيضاً
+      # 🛡️ الاختبارات غير الوظيفية - فحص الأمان (Non-functional Test)
+      - name: Run Security Audit (allowing moderate)
+        run: npm audit --audit-level=high 
 
-      # =======================================================
-      # 🧪 الاختبارات الوظيفية - تشغيل Vitest (Functional Tests)
-      # =======================================================
-      - name: Run Vitest with coverage and XML report
+      # 🧪 الاختبارات الوظيفية وتغطية الكود (Functional Tests)
+      - name: Run Vitest and generate report
         run: npm run test:coverage
-        # هذا الأمر يشغل الاختبارات الوظيفية ويولد تقرير التغطية المطلوب.
 
-      # =======================================================
-      # 📄 توليد تقرير الاختبار (Report Generation)
-      # =======================================================
-      # رفع تقرير تغطية الكود (Non-functional report) كـ Artifact
-      - name: Upload coverage report
+      # 📄 رفع تقرير التغطية كـ Artifact
+      - name: Upload coverage report Artifact
         uses: actions/upload-artifact@v4
         with:
           name: vitest-coverage-report
